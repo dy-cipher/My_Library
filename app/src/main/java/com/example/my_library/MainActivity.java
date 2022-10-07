@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, AllBooksActivity.class);
-                context.startActivity(i);
+                startActivity(i);
             }
         });
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
-                context.startActivity(i);
+                startActivity(i);
             }
         });
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, AllBooksActivity.class);
-                context.startActivity(i);
+                startActivity(i);
             }
         });
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, FinishedReading.class);
-                context.startActivity(i);
+                startActivity(i);
             }
         });
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, AboutActivity.class);
-                context.startActivity(i);
+                startActivity(i);
             }
         });
     }
