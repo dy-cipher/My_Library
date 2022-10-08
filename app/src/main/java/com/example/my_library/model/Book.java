@@ -1,16 +1,35 @@
 package com.example.my_library.model;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
 
-    private String name, author, description, imageUrl;
+    private String name,description, imageUrl;
+    private List<String> authors;
     private int pages;
+    private Long id;
 
-    public Book(String name, String author, String description, String imageUrl, int pages) {
-        this.name = name;
-        this.author = author;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.pages = pages;
+    public Book(JSONObject jsonObject) throws JSONException {
+        this.name = jsonObject.getString("title");
+        this.authors = jsonArrayAuthors(jsonObject.getJSONArray("authors"));
+        this.description = jsonObject.getString("shortDescription");
+        this.imageUrl = jsonObject.getString("thumbnailUrl");
+        this.id = jsonObject.getLong("isbn");
+        this.pages = jsonObject.getInt("pageCount");
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -21,12 +40,12 @@ public class Book {
         this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
+    public List<String> getAuthor() {
+        return authors;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor(List<String> author) {
+        this.authors = author;
     }
 
     public String getDescription() {
@@ -53,14 +72,34 @@ public class Book {
         this.pages = pages;
     }
 
+    private static List<String> jsonArrayAuthors(JSONArray jsonArray) throws JSONException {
+        ArrayList<String> authors = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++){
+            authors.add(jsonArray.getJSONArray(i).toString());
+        }
+        return authors;
+    }
+
+    public static List<Book> fromJsonArray(JSONArray jsonArray) throws JSONException {
+        List<Book> books = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++){
+            books.add(new Book(jsonArray.getJSONObject(i)));
+        }
+
+        return books;
+    }
+
+
     @Override
     public String toString() {
-        return "Books{" +
+        return "Book{" +
                 "name='" + name + '\'' +
-                ", author='" + author + '\'' +
+                ", author='" + authors + '\'' +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", id=" + id +
                 ", pages=" + pages +
                 '}';
     }
+
 }

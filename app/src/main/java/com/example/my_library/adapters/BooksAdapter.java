@@ -18,17 +18,18 @@ import com.example.my_library.R;
 import com.example.my_library.model.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
 
     private static final String TAG = "BooksAdapter";
-    ArrayList<Book> books = new ArrayList<>();
+    List<Book> bookList;
     Context context;
     View view;
 
-    public BooksAdapter( Context context) {
+    public BooksAdapter( Context context, List<Book> bookList ) {
         this.context = context;
-
+        this.bookList = bookList;
     }
 
     @NonNull
@@ -41,14 +42,14 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
-        Book book = books.get(position);
+        Book book = bookList.get(position);
         holder.bind(book);
 
     }
 
     @Override
     public int getItemCount() {
-        return books.size();
+        return bookList.size();
     }
 
 
@@ -60,9 +61,9 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivBookImage = (ImageView) itemView.findViewById(R.id.ivBookImage);
-            tvBookName = (TextView) itemView.findViewById(R.id.tvBookName);
-            cvContainer = (CardView) itemView.findViewById(R.id.cvContainer);
+            ivBookImage = itemView.findViewById(R.id.ivBookImage);
+            tvBookName =  itemView.findViewById(R.id.tvBookName);
+            cvContainer = itemView.findViewById(R.id.cvContainer);
         }
 
         public void bind(Book book){
@@ -83,7 +84,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     }
 
     public void setBooks(ArrayList<Book> books) {
-        this.books = books;
+        this.bookList = books;
         notifyDataSetChanged();
     }
 }
