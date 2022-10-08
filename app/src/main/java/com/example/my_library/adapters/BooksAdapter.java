@@ -10,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.my_library.R;
 import com.example.my_library.model.Book;
 
@@ -32,7 +34,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_books_item, null);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_books_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,13 +42,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
         Book book = books.get(position);
-        holder.tvBookName.setText(book.getName());
-        holder.tvBookName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.bind(book);
+
     }
 
     @Override
@@ -59,11 +56,29 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
         private ImageView ivBookImage;
         private TextView tvBookName;
+        private CardView cvContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivBookImage = (ImageView) itemView.findViewById(R.id.ivBookImage);
             tvBookName = (TextView) itemView.findViewById(R.id.tvBookName);
+            cvContainer = (CardView) itemView.findViewById(R.id.cvContainer);
+        }
+
+        public void bind(Book book){
+            tvBookName.setText(book.getName());
+
+            Glide.with(context)
+                    .asBitmap()
+                    .load(book.getImageUrl())
+                    .into(ivBookImage);
+
+            cvContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
