@@ -1,5 +1,6 @@
 package com.example.my_library.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ import com.example.my_library.utilities.Utils;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AllBooksDetailActivity extends AppCompatActivity {
     private static final String TAG = "AllBooksDetailActivity";
@@ -29,6 +32,7 @@ public class AllBooksDetailActivity extends AppCompatActivity {
     private Button btnCurrent, btnDoneReading, btnWantTo;
     Book books;
     Boolean doesExist = false;
+    List<Book> currReading, doneReading, wantTo;
 
 
 
@@ -37,13 +41,16 @@ public class AllBooksDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books_detail);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initWidgets();
 
         books = Parcels.unwrap(getIntent().getParcelableExtra("book"));
 
         tvBookName.setText(books.getName());
         tvBookDescription.setText(books.getDescription());
-//        tvPages.setText(books.getPages());
+        tvPages.setText(books.getPages() + " Pages ");
+
 
         setOnCLickListeners();
 
@@ -81,9 +88,10 @@ public class AllBooksDetailActivity extends AppCompatActivity {
     }
 
     private void btnDoneReadingTapped() {
+        doesExist = false;
         Log.d(TAG, "btnDoneReading  Started");
-        ArrayList<Book> currentlyReading = Utils.getCurrentBooks();
-        for (Book book: currentlyReading){
+        doneReading = Utils.getFinishedBooks();
+        for (Book book: doneReading){
             if (book.getId() == books.getId()){
                 doesExist = true;
             }
@@ -107,16 +115,16 @@ public class AllBooksDetailActivity extends AppCompatActivity {
             builder.setCancelable(true);
             builder.create().show();
         }else{
-            Utils.addCurrReadingBooks(books);
+            Utils.addFinishedBooks(books);
             Toast.makeText(this, "Books added successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void btnWantToTapped() {
-
+        doesExist = false;
         Log.d(TAG, "button Want to read books tapped Started");
-        ArrayList<Book> currentlyReading = Utils.getCurrentBooks();
-        for (Book book: currentlyReading){
+        wantTo = Utils.getToRead();
+        for (Book book: wantTo){
             if (book.getId() == books.getId()){
                 doesExist = true;
             }
@@ -140,16 +148,17 @@ public class AllBooksDetailActivity extends AppCompatActivity {
             builder.setCancelable(true);
             builder.create().show();
         }else{
-            Utils.addCurrReadingBooks(books);
+            Utils.addToReadBooks(books);
             Toast.makeText(this, "Books added successfully", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private void btnCurrentReadingTapped() {
+        doesExist = false;
         Log.d(TAG, "btnCurrentTapped Started");
-        ArrayList<Book> currentlyReading = new ArrayList<>();
-        for (Book book: currentlyReading){
+        currReading = Utils.getCurrentBooks();
+        for (Book book: currReading){
             if (book.getId() == books.getId()){
                 doesExist = true;
             }
@@ -164,7 +173,7 @@ public class AllBooksDetailActivity extends AppCompatActivity {
 
                 }
             });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -188,5 +197,23 @@ public class AllBooksDetailActivity extends AppCompatActivity {
         btnDoneReading = findViewById(R.id.btnDoneReading);
         btnWantTo = findViewById(R.id.btnWantTo);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

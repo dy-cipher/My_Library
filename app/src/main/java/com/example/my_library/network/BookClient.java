@@ -23,6 +23,7 @@ public class BookClient {
     private BooksAdapter adapter;
     private List<Book> books;
     private final String TAG;
+    Utils utils = new Utils();
     public static final String url = "https://raw.githubusercontent.com/bvaughn/infinite-list-reflow-examples/master/books.json";
 
     public BookClient(BooksAdapter adapter, List<Book> books, String TAG) {
@@ -41,6 +42,7 @@ public class BookClient {
 
                 try {
                     books.addAll(Book.fromJsonArray(jsonArray));
+                    utils.initAllBooks(Book.fromJsonArray(jsonArray));
                     adapter.notifyDataSetChanged();
                     Log.i(TAG, "Books: " + books.toString());
 //                    Toast.makeText(context, books.toString(), Toast.LENGTH_LONG).show();

@@ -16,48 +16,36 @@
 
         <Button
             android:id="@id/btnCurrent"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="In progress"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="50dp"
-            />
-
+            android:layout_marginRight="10dp"
+            android:text=" Add to In progress" />
 
 
         <Button
             android:id="@+id/btnWantTo"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Want to Read"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/btnCurrent"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Add to my List" />
 
         <Button
             android:id="@+id/btnDoneReading"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Finished Book"
+            android:text=" Add to Finished"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/btnWantTo"
             />
 
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Finished Book"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/btnWantTo"
-            />
+
 
 
     </RelativeLayout>

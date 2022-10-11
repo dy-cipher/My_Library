@@ -3,22 +3,23 @@ package com.example.my_library.utilities;
 import com.example.my_library.model.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
-    private static ArrayList<Book> allBooks;
-    private static ArrayList<Book> currentBooks;
-    private static ArrayList<Book> toRead;
-    private static ArrayList<Book> finishedBooks;
+    private static List<Book> allBooks;
+    private static List<Book> currentBooks;
+    private static List<Book> toRead;
+    private static List<Book> finishedBooks;
 
     public Utils() {
         if(allBooks == null){
             allBooks = new ArrayList<>();
-            initAllBooks();
+
         }
 
         if(currentBooks == null){
             currentBooks = new ArrayList<>();
-            initAllBooks();
+
         }
 
         if (null == toRead){
@@ -31,25 +32,26 @@ public class Utils {
         }
     }
 
-    private static void initAllBooks(){
+    public void initAllBooks(List<Book> books){
         //TODO: initialize all array books here
-
+        allBooks = new ArrayList<>();
+        allBooks.addAll(books);
 
     }
 
-    public static ArrayList<Book> getAllBooks() {
+    public static List<Book> getAllBooks() {
         return allBooks;
     }
 
-    public static ArrayList<Book> getCurrentBooks() {
+    public static List<Book> getCurrentBooks() {
         return currentBooks;
     }
 
-    public static ArrayList<Book> getToRead() {
+    public static List<Book> getToRead() {
         return toRead;
     }
 
-    public static ArrayList<Book> getFinishedBooks() {
+    public static List<Book> getFinishedBooks() {
         return finishedBooks;
     }
 
