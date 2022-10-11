@@ -50,9 +50,9 @@
                 android:id="@+id/btnWantTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Looking for Books"
+                android:layout_below="@+id/btnCurrent"
                 android:layout_marginTop="7dp"
-                android:layout_below="@+id/btnCurrent"/>
+                android:text="My List" />
 
             <Button
                 android:id="@+id/btnDoneReading"

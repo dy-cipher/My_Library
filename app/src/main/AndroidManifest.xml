@@ -16,6 +16,9 @@
         android:theme="@style/Theme.My_Library"
         tools:targetApi="31">
         <activity
+            android:name=".MyListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AllBooksDetailActivity"
             android:exported="false" />
         <activity
