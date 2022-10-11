@@ -3,32 +3,36 @@ package com.example.my_library.model;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Book {
 
     private String name,description, imageUrl;
     private List<String> authors;
     private int pages;
-    private Long id;
+    private String id;
+
+    public Book(){} // empty constructor for parceler library
 
     public Book(JSONObject jsonObject) throws JSONException {
         this.name = jsonObject.getString("title");
         this.authors = jsonArrayAuthors(jsonObject.getJSONArray("authors"));
-        this.description = jsonObject.getString("shortDescription");
-        this.imageUrl = jsonObject.getString("thumbnailUrl");
-        this.id = jsonObject.getLong("isbn");
+        this.description = jsonObject.has("shortDescription") ? jsonObject.getString("shortDescription"): "";
+        this.imageUrl = jsonObject.has("thumbnailUrl") ? jsonObject.getString("thumbnailUrl") : "";
+        this.id = jsonObject.has("isbn") ? jsonObject.getString("isbn") : "";
         this.pages = jsonObject.getInt("pageCount");
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -75,7 +79,7 @@ public class Book {
     private static List<String> jsonArrayAuthors(JSONArray jsonArray) throws JSONException {
         ArrayList<String> authors = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++){
-            authors.add(jsonArray.getJSONArray(i).toString());
+            authors.add(jsonArray.getString(i));
         }
         return authors;
     }

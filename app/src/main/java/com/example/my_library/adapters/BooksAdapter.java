@@ -1,6 +1,7 @@
 package com.example.my_library.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.my_library.R;
+import com.example.my_library.activities.AllBooksDetailActivity;
 import com.example.my_library.model.Book;
+
+import org.parceler.Parcel;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +82,9 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
             cvContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, AllBooksDetailActivity.class);
+                    intent.putExtra("book", Parcels.wrap(book));
+                    context.startActivity(intent);
                 }
             });
         }

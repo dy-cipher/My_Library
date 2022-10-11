@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My_Library</string>
     <string name="my_library">My Library</string>
+    <string name="authors">authors</string>
+    <string name="bookname">BookName</string>
+    <string name="description">Description</string>
 </resources>

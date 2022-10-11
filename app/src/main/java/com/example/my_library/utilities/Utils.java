@@ -53,27 +53,27 @@ public class Utils {
         return finishedBooks;
     }
 
-    public boolean addCurrReadingBooks(Book book){
+    public static boolean addCurrReadingBooks(Book book){
         return currentBooks.add(book);
     }
 
-    public boolean addToReadBooks(Book book){
+    public static boolean addToReadBooks(Book book){
         return toRead.add(book);
     }
 
-    public boolean addFinishedBooks(Book book){
+    public static boolean addFinishedBooks(Book book){
         return finishedBooks.add(book);
     }
 
-    public boolean removeCurrReadingBooks(Book book){
+    public static boolean removeCurrReadingBooks(Book book){
         return currentBooks.remove(book);
     }
 
-    public boolean removeToReadBooks(Book book){
+    public static boolean removeToReadBooks(Book book){
         return toRead.remove(book);
     }
 
-    public boolean removeFinishedBooks(Book book){
+    public static boolean removeFinishedBooks(Book book){
         return finishedBooks.remove(book);
     }
 }

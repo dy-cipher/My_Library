@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AllBooksDetailActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rlButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@id/btnCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In progress"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/btnWantTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Want to Read"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btnCurrent"
+            />
+
+        <Button
+            android:id="@+id/btnDoneReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finished Book"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btnWantTo"
+            />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finished Book"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btnWantTo"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/rlButtons">
+
+
+        <RelativeLayout
+            android:id="@+id/rlFirstLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/ivBookImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@mipmap/ic_launcher" />
+
+
+            <TextView
+                android:id="@+id/tvBookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/ivBookImage"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/bookname"/>
+
+
+            <TextView
+                android:id="@+id/tvAuthors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBookName"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/authors"
+                android:layout_toRightOf="@+id/ivBookImage"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+
+            <TextView
+                android:id="@+id/tvPages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAuthors"
+                android:layout_centerHorizontal="true"
+                android:hint="2XX Pages"
+                android:layout_toRightOf="@+id/ivBookImage"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/tvBookDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_below="@+id/rlFirstLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:hint="@string/description"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

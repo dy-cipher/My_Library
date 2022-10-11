@@ -9,6 +9,7 @@ import com.example.my_library.model.Book;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.my_library.utilities.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,11 +19,11 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class BookClient {
-    Context context;
+
     private BooksAdapter adapter;
     private List<Book> books;
     private final String TAG;
-    public static final String url = "https://github.com/bvaughn/infinite-list-reflow-examples/blob/master/books.json";
+    public static final String url = "https://raw.githubusercontent.com/bvaughn/infinite-list-reflow-examples/master/books.json";
 
     public BookClient(BooksAdapter adapter, List<Book> books, String TAG) {
         this.adapter = adapter;
@@ -42,7 +43,7 @@ public class BookClient {
                     books.addAll(Book.fromJsonArray(jsonArray));
                     adapter.notifyDataSetChanged();
                     Log.i(TAG, "Books: " + books.toString());
-                    Toast.makeText(context, books.toString(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, books.toString(), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception");
                     e.printStackTrace();
