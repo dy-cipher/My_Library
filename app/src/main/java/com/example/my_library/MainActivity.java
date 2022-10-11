@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.my_library.activities.MyListActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnAllBooks, btnCurrent, btnWantTo, btnDoneReading, btnAbout;
@@ -18,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         // method for widgets initialization
         initWigets();
         setOnClickListeners();
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btnWantTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AllBooksActivity.class);
+                Intent i = new Intent(MainActivity.this, MyListActivity.class);
                 startActivity(i);
             }
         });
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
     }
 
     private void initWigets() {
